@@ -1506,6 +1506,7 @@ class SomeClass {
 use Bitrix\Highloadblock\HighloadBlockTable;
 
 \Bitrix\Main\Loader::includeModule('highloadblock');
+
 class Morphology {
 	private function getHighloadBlockIdByName(string $name): ?int
 	{
@@ -1521,7 +1522,6 @@ class Morphology {
 use Bitrix\Highloadblock\HighloadBlockTable;
 use Bitrix\Main\Loader;
 
-\Bitrix\Main\Loader::includeModule('highloadblock');
 class Morphology {
     public function __construct()
 	{
