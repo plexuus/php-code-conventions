@@ -1498,6 +1498,46 @@ class SomeClass {
 }
 ```
 
+### 📖 Классы не должны иметь исполняемой части при загрузке
+Класс содержащий исполняемую часть кода при загрузке обязан реализовывать дополнительные механизмы защиты от прямого запуска скрипта.
+
+Плохо:
+```php
+use Bitrix\Highloadblock\HighloadBlockTable;
+
+\Bitrix\Main\Loader::includeModule('highloadblock');
+class Morphology {
+	private function getHighloadBlockIdByName(string $name): ?int
+	{
+		$cacheTTL = 60*60*1;
+		$arHLBlock = HighloadBlockTable::getList(['cache' => ['TTL' => $cacheTTL], 'filter' => ['NAME' => $name],])->fetch();
+		return (int)$arHLBlock['ID'] ?: null;
+	}
+}
+```
+
+Хорошо:
+```php
+use Bitrix\Highloadblock\HighloadBlockTable;
+use Bitrix\Main\Loader;
+
+\Bitrix\Main\Loader::includeModule('highloadblock');
+class Morphology {
+    public function __construct()
+	{
+		Loader::includeModule('highloadblock');
+	}
+
+	private function getHighloadBlockIdByName(string $name): ?int
+	{
+		$cacheTTL = 60*60*1;
+		$arHLBlock = HighloadBlockTable::getList(['cache' => ['TTL' => $cacheTTL], 'filter' => ['NAME' => $name],])->fetch();
+		return (int)$arHLBlock['ID'] ?: null;
+	}
+}
+```
+
+
 **[⬆ наверх](#Содержание)**
 
 ## **Работа с объектами**
