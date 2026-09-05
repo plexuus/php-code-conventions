@@ -1586,7 +1586,8 @@ public function loadApprovedUsers(): array {
 ```
 
 ### 📖 Вынужденные хаки должны быть помечены комментариями
-Лучше соблюдать одинаковый формат в рамках проекта
+Лучше соблюдать одинаковый формат в рамках проекта и не использовать докблоки `/** */` как обычные комментарии.
+
 
 Хорошо:
 ```php
@@ -1606,14 +1607,14 @@ function loadUsers(): array {
 Хорошо:
 ```php
 /**
- * https://en.wikipedia.org/wiki/Quicksort
+ * @link https://en.wikipedia.org/wiki/Quicksort
  */
 function quickSort(array $arr): array {
     // ...
 }
 
 /**
- * https://habrahabr.ru/post/320140/
+ * @link https://habrahabr.ru/post/320140/
  */
 function generateRandomMaze() {
     // ...
