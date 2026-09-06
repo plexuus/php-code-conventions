@@ -72,6 +72,7 @@
 
 Плохо:
 ```php
+// ...
 $legacyCondition = true;
 if ($legacyCondition) {
     finalizeData($data);
@@ -162,17 +163,15 @@ class Env {
 
 class User {
 
-    /**
-     * @var Env
-     */
-    private $_env;
+    /** @var Env */
+    private $env;
     
     public function __construct(Env $env) {
-        $this->_env = $env;
+        $this->env = $env;
     }
 
     public function loadUsers() {
-        $path = $this->_env->getDataPath();
+        $path = $this->env->getDataPath();
         // ...
     }
 }
