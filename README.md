@@ -377,18 +377,20 @@ $object->getExpirationDate();
 ```
 
 ### 📖 В названии переменной не должно быть указания типа
-Нельзя писать `$projectsArray`, надо писать просто `$projects`. Это же касается и форматов (JSON, XML и т.п.), и любой другой не относящейся к предметной области информации.
+Нельзя писать `$aProjects`, надо писать просто `$projects`. Это же касается и форматов (array, boolean, int, JSON, XML и т.п.), и любой другой не относящейся к предметной области информации.
 
 Плохо:
 ```php
-$projectsList = $repository->loadProjects();
-$projectsListIds = $utils->extractField('id', $projectsList);
+$aProjects = $oRepository->loadProjects();
+$aProjectIds = $utils->extractField('id', $aProjects);
+$iFirstProjectId = $aProjectIds[0];
 ```
 
 Хорошо:
 ```php
 $projects = $repository->loadProjects();
-$projectsIds = $utils->extractField('id', $projects);
+$projectIds = $utils->extractField('id', $projects);
+$firstProjectId = $projectIds[0];
 ```
 
 ### 📖 Нельзя изменять переменные, которые передаются в метод на вход 
