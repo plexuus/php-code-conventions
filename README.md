@@ -112,16 +112,20 @@ $object->sendEmail('Title', '', '2017-01-01');
 
 Плохо:
 ```php
-function deleteUsersByIds(array $ids = [], bool $someOption = false) {
+function deleteUsersByIds(?array $ids = null) {
     // ...
 }
 
-deleteUsersByIds(null, true);
+deleteUsersByIds(null);
 ```
 
 Хорошо:
 ```php
-deleteUsersByIds([], true);
+function deleteUsersByIds(array $ids = []) {
+    // ...
+}
+
+deleteUsersByIds([]);
 ```
 
 Итого: использование пустой строки почти всегда является ошибкой.
